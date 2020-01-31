@@ -11,8 +11,12 @@ Ramsøy Thomas Zoëga. *Introduction to Neuromarketing & Consumer Neuroscience*
 
 
 ## The Research Question
-For my thesis, I’m visualizing brain data because I want to show how decision making is made at the unconscious level in order to illuminate biases leading into the 2020 Presidential Election. The following image and text outline highlight the connections between my ideas, data, and external sources. 
+For my thesis, I’m visualizing brain data because I want to show how decision making is made at the unconscious level in order to illuminate biases leading into the 2020 Presidential Election. The first image is a mind map of my concept, data, and external sources. This is followed by a re-ordered outline in both a visual and textual representation. 
 
 ![Mindmap](https://github.com/lulujordanna/thesis/blob/master/Concept_Development/assets/Thesis-Mindmap.png)
+
+<hr></hr>
+
+![Outline](https://github.com/lulujordanna/thesis/blob/master/Concept_Development/assets/Thesis-Outline.png)
 
 
