@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <Landing />
+    <Description />
     <form action="#" @submit.prevent="getIssues">
       <div class="form-group">
         <input
@@ -18,6 +20,8 @@
 
 <script>
 import BarChart from './components/BarChart.vue'
+import Landing from './components/Landing.vue'
+import Description from './components/Description.vue'
 import moment from 'moment'
 import axios from 'axios'
 import _ from 'lodash'
@@ -26,6 +30,8 @@ export default {
   name: 'App',
   components: {
     BarChart,
+    Landing,
+    Description,
   },
   data() {
     return {
@@ -90,7 +96,13 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #ffffff;
+  background-color: #305581;
+}
+#app h1 {
+  font-size: 80px;
+}
+#app h2 {
+  font-size: 60px;
 }
 </style>
