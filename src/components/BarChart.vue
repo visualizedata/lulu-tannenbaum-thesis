@@ -131,3 +131,8 @@ export default {
   },
 }
 </script>
+<style>
+.bar {
+  fill: #319bbe;
+}
+</style>

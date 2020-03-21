@@ -10,6 +10,8 @@
         />
       </div>
     </form>
+    <div class="alert alert-info" v-show="loading">Loading...</div>
+    <div class="alert alert-danger" v-show="errored">An error occurred</div>
     <BarChart :issues="issues"></BarChart>
   </div>
 </template>
@@ -27,6 +29,8 @@ export default {
   },
   data() {
     return {
+      loading: false,
+      errored: false,
       issues: [],
       repository: '',
       startDate: null,
@@ -48,6 +52,7 @@ export default {
       return dates
     },
     getIssues() {
+      this.loading = true
       this.startDate = moment()
         .subtract(6, 'days')
         .format('YYYY-MM-DD')
@@ -71,7 +76,9 @@ export default {
         })
         .catch(error => {
           console.error(error)
+          this.errored = true
         })
+        .finally(() => (this.loading = false))
     },
   },
 }
