@@ -4,7 +4,15 @@
     <Description />
     <div class="alert alert-info" v-show="loading">Loading...</div>
     <div class="alert alert-danger" v-show="errored">An error occurred</div>
-    <BarChart :issues="issues"></BarChart>
+    <div>
+      <p>{{ formattedPercentage }} state that they care about</p>
+      <select v-model="selectedIssue">
+        <option v-for="issue in issues" v-bind:key="issue.issue">
+          {{ issue.issue }}
+        </option>
+      </select>
+    </div>
+    <BarChart :issues="issues" :selectedIssue="selectedIssue"></BarChart>
   </div>
 </template>
 
@@ -13,10 +21,10 @@ import BarChart from './components/BarChart.vue'
 import Landing from './components/Landing.vue'
 import Description from './components/Description.vue'
 // import moment from 'moment'
-import { csv } from 'd3'
+import { csv, format } from 'd3'
 // import axios from 'axios'
 import _ from 'lodash'
-
+console.log('fromat', format)
 export default {
   name: 'App',
   components: {
@@ -29,9 +37,17 @@ export default {
       loading: false,
       errored: false,
       issues: [],
-      repository: '',
-      startDate: null,
+      selectedIssue: null,
     }
+  },
+  computed: {
+    formattedPercentage: function() {
+      if (_.isNil(this.selectedIssue)) {
+        return ''
+      }
+      const issueObj = _.find(this.issues, i => i.issue === this.selectedIssue)
+      return format('.0%')(issueObj.percentage)
+    },
   },
   mounted() {
     this.getIssues()
@@ -39,39 +55,15 @@ export default {
   methods: {
     getIssues() {
       this.loading = true
-      // this.startDate = moment()
-      //   .subtract(6, 'days')
-      //   .format('YYYY-MM-DD')
-
-      // axios
-      //   .get(
-      //     `https://api.github.com/search/issues?q=repo:${this.repository}+is:issue+is:open+created:>=${this.startDate}`,
-      //     { params: { per_page: 100 } }
-      //   )
-      //   .then(response => {
-      //     const payload = this.getDateRange()
-
-      //     _.each(response.data.items, item => {
-      //       const key = moment(item.created_at).format('MMM Do YY')
-      //       const obj = payload.filter(o => o.day === key)[0]
-      //       obj.issues += 1
-      //     })
-
-      //     this.issues = payload
-      //     console.log(this.issues)
-      //   })
-      //   .catch(error => {
-      //     console.error(error)
-      //     this.errored = true
-      //   })
-      //   .finally(() => (this.loading = false))
 
       csv('/data/surveyData.csv', datum => ({
         issue: datum.Issue,
         percentage: +_.replace(datum.Percentage, '%', '') / 100,
       })).then(data => {
         console.log('got issues', data)
+        this.loading = false
         this.issues = _.shuffle(data)
+        this.selectedIssue = _.first(this.issues).issue
       })
     },
   },

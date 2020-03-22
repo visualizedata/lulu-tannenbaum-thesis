@@ -8,7 +8,7 @@
 import { select, scaleLinear, axisBottom, axisLeft, scaleBand } from 'd3'
 import _ from 'lodash'
 export default {
-  props: ['issues'],
+  props: ['issues', 'selectedIssue'],
   data() {
     return {
       chart: null,
@@ -17,11 +17,15 @@ export default {
   watch: {
     issues(val) {
       if (this.chart !== null) this.chart.remove()
-      this.renderChart(val)
+      this.renderChart(val, this.selectedIssue)
+    },
+    selectedIssue(val) {
+      if (this.chart !== null) this.chart.remove()
+      this.renderChart(this.issues, val)
     },
   },
   methods: {
-    renderChart(issuesVal) {
+    renderChart(issuesVal, selectedIssue) {
       const margin = 60
       const svgWidth = 1000
       const svgHeight = 600
@@ -68,14 +72,10 @@ export default {
         .attr('y', g => yScale(g.percentage))
         .attr('height', g => chartHeight - yScale(g.percentage))
         .attr('width', xScale.bandwidth())
-
-      svg
-        .append('text')
-        .attr('class', 'title')
-        .attr('x', chartWidth / 2 + margin)
-        .attr('y', 40)
-        .attr('text-anchor', 'middle')
-        .text('People State ... ')
+        .classed('selected', d => {
+          console.log(d, selectedIssue)
+          return _.isEqual(d.issue, selectedIssue)
+        })
     },
   },
 }
@@ -83,5 +83,9 @@ export default {
 <style>
 .bar {
   fill: #ffffff;
+}
+
+.bar.selected {
+  fill: #da3767;
 }
 </style>
