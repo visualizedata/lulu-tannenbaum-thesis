@@ -5,14 +5,7 @@
 </template>
 
 <script>
-import {
-  select,
-  selectAll,
-  scaleLinear,
-  axisBottom,
-  axisLeft,
-  scaleBand,
-} from 'd3'
+import { select, scaleLinear, axisBottom, axisLeft, scaleBand } from 'd3'
 import _ from 'lodash'
 export default {
   props: ['issues'],
@@ -45,21 +38,23 @@ export default {
 
       const yScale = scaleLinear()
         .range([chartHeight, 0])
-        .domain([0, _.maxBy(issuesVal, 'issues').issues])
+        .domain([0, _.maxBy(issuesVal, 'percentage').percentage])
 
-      this.chart
-        .append('g')
-        .call(axisLeft(yScale).ticks(_.maxBy(issuesVal, 'issues').issues))
+      this.chart.append('g').call(axisLeft(yScale).ticks(0))
 
       const xScale = scaleBand()
         .range([0, chartWidth])
-        .domain(issuesVal.map(s => s.day))
+        .domain(issuesVal.map(s => s.issue))
         .padding(0.2)
 
       this.chart
         .append('g')
         .attr('transform', `translate(0, ${chartHeight})`)
-        .call(axisBottom(xScale))
+        .call(
+          axisBottom(xScale)
+            .ticks(0)
+            .tickValues([])
+        )
 
       const barGroups = this.chart
         .selectAll('rect')
@@ -69,56 +64,10 @@ export default {
       barGroups
         .append('rect')
         .attr('class', 'bar')
-        .attr('x', g => xScale(g.day))
-        .attr('y', g => yScale(g.issues))
-        .attr('height', g => chartHeight - yScale(g.issues))
+        .attr('x', g => xScale(g.issue))
+        .attr('y', g => yScale(g.percentage))
+        .attr('height', g => chartHeight - yScale(g.percentage))
         .attr('width', xScale.bandwidth())
-        .on('mouseenter', function(actual, i) {
-          select(this)
-            .transition()
-            .duration(300)
-            .attr('opacity', 0.6)
-            .attr('x', a => xScale(a.day) - 5)
-            .attr('width', xScale.bandwidth() + 10)
-          barGroups
-            .append('text')
-            .attr('class', 'value')
-            .attr('x', a => xScale(a.day) + xScale.bandwidth() / 2)
-            .attr('y', a => yScale(a.issues) - 20)
-            .attr('text-anchor', 'middle')
-            .text((a, idx) => {
-              return idx !== i ? '' : `${a.issues} issues`
-            })
-        })
-        .on('mouseleave', function() {
-          selectAll('.issues').attr('opacity', 1)
-
-          select(this)
-            .transition()
-            .duration(300)
-            .attr('opacity', 1)
-            .attr('x', a => xScale(a.day))
-            .attr('width', xScale.bandwidth())
-
-          svg.selectAll('.value').remove()
-        })
-
-      svg
-        .append('text')
-        .attr('class', 'label')
-        .attr('x', -(chartHeight / 2) - margin)
-        .attr('y', margin / 2.4)
-        .attr('transform', 'rotate(-90)')
-        .attr('text-anchor', 'middle')
-        .text('Issues opened')
-
-      svg
-        .append('text')
-        .attr('class', 'label')
-        .attr('x', chartWidth / 2 + margin)
-        .attr('y', chartHeight + margin * 1.7)
-        .attr('text-anchor', 'middle')
-        .text('Days')
 
       svg
         .append('text')
@@ -126,13 +75,13 @@ export default {
         .attr('x', chartWidth / 2 + margin)
         .attr('y', 40)
         .attr('text-anchor', 'middle')
-        .text('Issues in the past 1 week')
+        .text('People State ... ')
     },
   },
 }
 </script>
 <style>
 .bar {
-  fill: #319bbe;
+  fill: #ffffff;
 }
 </style>
