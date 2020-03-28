@@ -1,6 +1,12 @@
 <template>
-  <div>
-    <svg />
+  <div id="flex-container">
+    <div>
+      <h2>People State</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris luctus et nisl ut porttitor. Praesent magna ante, suscipit eget convallis nec, sollicitudin non neque. Duis et tincidunt sem, quis semper elit. Praesent efficitur eleifend mauris a rutrum. In nec sem metus. Mauris dignissim bibendum bibendum. Pellentesque dolor nunc, rhoncus in aliquet vitae, vestibulum vitae nibh. Pellentesque ornare lacus a molestie consequat.</p>
+    </div>
+    <div id="svg-container">
+      <svg />
+    </div>
   </div>
 </template>
 
@@ -26,11 +32,13 @@ export default {
   },
   methods: {
     renderChart(issuesVal, selectedIssue) {
+      const container = select('#svg-container').node()
       const margin = 60
-      const svgWidth = 1000
-      const svgHeight = 600
-      const chartWidth = 1000 - 2 * margin
-      const chartHeight = 600 - 2 * margin
+      const svgWidth = container.clientWidth
+
+      const svgHeight = svgWidth * 0.6
+      const chartWidth = svgWidth - 2 * margin
+      const chartHeight = svgHeight - 2 * margin
 
       const svg = select('svg')
         .attr('width', svgWidth)
@@ -73,7 +81,6 @@ export default {
         .attr('height', g => chartHeight - yScale(g.percentage))
         .attr('width', xScale.bandwidth())
         .classed('selected', d => {
-          console.log(d, selectedIssue)
           return _.isEqual(d.issue, selectedIssue)
         })
     },
@@ -81,6 +88,20 @@ export default {
 }
 </script>
 <style>
+#flex-container {
+  padding-top: 60px;
+  padding-left: 63px;
+  display: flex;
+  text-align: left;
+}
+
+#flex-container > div {
+  flex: 50%;
+}
+#flex-container p {
+  line-height: 125%;
+}
+
 .bar {
   fill: #ffffff;
 }

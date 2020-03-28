@@ -7,12 +7,12 @@
     <div>
       <p>{{ formattedPercentage }} state that they care about</p>
       <select v-model="selectedIssue">
-        <option v-for="issue in issues" v-bind:key="issue.issue">
-          {{ issue.issue }}
-        </option>
+        <option v-for="issue in issues" v-bind:key="issue.issue">{{ issue.issue }}</option>
       </select>
     </div>
     <BarChart :issues="issues" :selectedIssue="selectedIssue"></BarChart>
+    <MainContent />
+    <Methodology />
   </div>
 </template>
 
@@ -20,17 +20,21 @@
 import BarChart from './components/BarChart.vue'
 import Landing from './components/Landing.vue'
 import Description from './components/Description.vue'
+import MainContent from './components/MainContent.vue'
+import Methodology from './components/Methodology.vue'
 // import moment from 'moment'
 import { csv, format } from 'd3'
 // import axios from 'axios'
 import _ from 'lodash'
-console.log('fromat', format)
+
 export default {
   name: 'App',
   components: {
     BarChart,
     Landing,
     Description,
+    MainContent,
+    Methodology,
   },
   data() {
     return {
@@ -60,7 +64,6 @@ export default {
         issue: datum.Issue,
         percentage: +_.replace(datum.Percentage, '%', '') / 100,
       })).then(data => {
-        console.log('got issues', data)
         this.loading = false
         this.issues = _.shuffle(data)
         this.selectedIssue = _.first(this.issues).issue
@@ -84,5 +87,8 @@ export default {
 }
 #app h2 {
   font-size: 60px;
+}
+#app h3 {
+  font-size: 48px;
 }
 </style>
