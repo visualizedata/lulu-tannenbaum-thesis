@@ -5,25 +5,47 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris luctus et nisl ut porttitor. Praesent magna ante, suscipit eget convallis nec, sollicitudin non neque. Duis et tincidunt sem, quis semper elit. Praesent efficitur eleifend mauris a rutrum. In nec sem metus. Mauris dignissim bibendum bibendum. Pellentesque dolor nunc, rhoncus in aliquet vitae, vestibulum vitae nibh. Pellentesque ornare lacus a molestie consequat.</p>
     </div>
     <div id="svg-container">
+      <p id="percentage">{{ formattedPercentage }} state that they care about</p>
+      <select v-model="selectedIssue">
+        <option v-for="issue in issues" v-bind:key="issue.issue">{{ issue.issue }}</option>
+      </select>
       <svg />
     </div>
   </div>
 </template>
 
 <script>
-import { select, scaleLinear, axisBottom, axisLeft, scaleBand } from 'd3'
+import {
+  select,
+  scaleLinear,
+  axisBottom,
+  axisLeft,
+  scaleBand,
+  format,
+} from 'd3'
 import _ from 'lodash'
 export default {
-  props: ['issues', 'selectedIssue'],
+  props: ['issues'],
   data() {
     return {
       chart: null,
+      selectedIssue: null,
     }
+  },
+  computed: {
+    formattedPercentage: function() {
+      if (_.isNil(this.selectedIssue)) {
+        return ''
+      }
+      const issueObj = _.find(this.issues, i => i.issue === this.selectedIssue)
+      return format('.0%')(issueObj.percentage)
+    },
   },
   watch: {
     issues(val) {
       if (this.chart !== null) this.chart.remove()
       this.renderChart(val, this.selectedIssue)
+      this.selectedIssue = _.first(val).issue
     },
     selectedIssue(val) {
       if (this.chart !== null) this.chart.remove()
@@ -98,8 +120,33 @@ export default {
 #flex-container > div {
   flex: 50%;
 }
+#flex-container h2 {
+  margin-bottom: 40px;
+}
 #flex-container p {
   line-height: 125%;
+  width: 65%;
+}
+#flex-container #percentage {
+  display: inline;
+  margin-right: 2px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+#flex-container select {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #da3767;
+  border-bottom: 1px white solid;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 0;
+  max-width: 200px;
+}
+select::-ms-expand {
+  display: none;
 }
 
 .bar {

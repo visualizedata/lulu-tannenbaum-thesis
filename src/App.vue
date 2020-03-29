@@ -4,12 +4,6 @@
     <Description />
     <div class="alert alert-info" v-show="loading">Loading...</div>
     <div class="alert alert-danger" v-show="errored">An error occurred</div>
-    <div>
-      <p>{{ formattedPercentage }} state that they care about</p>
-      <select v-model="selectedIssue">
-        <option v-for="issue in issues" v-bind:key="issue.issue">{{ issue.issue }}</option>
-      </select>
-    </div>
     <BarChart :issues="issues" :selectedIssue="selectedIssue"></BarChart>
     <MainContent />
     <Methodology />
@@ -22,9 +16,7 @@ import Landing from './components/Landing.vue'
 import Description from './components/Description.vue'
 import MainContent from './components/MainContent.vue'
 import Methodology from './components/Methodology.vue'
-// import moment from 'moment'
-import { csv, format } from 'd3'
-// import axios from 'axios'
+import { csv } from 'd3'
 import _ from 'lodash'
 
 export default {
@@ -41,17 +33,7 @@ export default {
       loading: false,
       errored: false,
       issues: [],
-      selectedIssue: null,
     }
-  },
-  computed: {
-    formattedPercentage: function() {
-      if (_.isNil(this.selectedIssue)) {
-        return ''
-      }
-      const issueObj = _.find(this.issues, i => i.issue === this.selectedIssue)
-      return format('.0%')(issueObj.percentage)
-    },
   },
   mounted() {
     this.getIssues()
@@ -66,7 +48,6 @@ export default {
       })).then(data => {
         this.loading = false
         this.issues = _.shuffle(data)
-        this.selectedIssue = _.first(this.issues).issue
       })
     },
   },
