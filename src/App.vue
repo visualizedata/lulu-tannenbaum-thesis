@@ -3,10 +3,11 @@
     <Landing />
     <Description />
     <div class="alert alert-info" v-show="loading">Loading...</div>
-    <div class="alert alert-danger" v-show="errored">An error occurred</div>
-    <BarChart :issues="issues" :selectedIssue="selectedIssue"></BarChart>
+
+    <BarChart :issues="issues"></BarChart>
     <MainContent />
     <Methodology />
+    <PopUp :content="currentAd" />
   </div>
 </template>
 
@@ -16,8 +17,11 @@ import Landing from './components/Landing.vue'
 import Description from './components/Description.vue'
 import MainContent from './components/MainContent.vue'
 import Methodology from './components/Methodology.vue'
-import { csv } from 'd3'
+import PopUp from './components/PopUp.vue'
+import { csv, nest, timeParse } from 'd3'
 import _ from 'lodash'
+
+const getPercentDiff = (a, b) => ((a - b) / ((a + b) / 2)) * 100
 
 export default {
   name: 'App',
@@ -27,16 +31,30 @@ export default {
     Description,
     MainContent,
     Methodology,
+    PopUp,
   },
   data() {
     return {
       loading: false,
       errored: false,
       issues: [],
+      advertisements: [],
     }
   },
   mounted() {
     this.getIssues()
+    this.getAdvertisementData()
+  },
+  computed: {
+    currentAd: function() {
+      if (_.size(this.advertisements)) {
+        return _.find(
+          this.advertisements,
+          (v, k) => k.slice(1) === '3l7IQbu3V0q9JKxHvUSDzC'
+        )
+      }
+      return null
+    },
   },
   methods: {
     getIssues() {
@@ -48,6 +66,27 @@ export default {
       })).then(data => {
         this.loading = false
         this.issues = _.shuffle(data)
+      })
+    },
+    getAdvertisementData() {
+      this.loading = true
+
+      csv('/data/braindata.csv', datum => ({
+        contentId: datum.content_id,
+        name: datum.name,
+        samples: +datum.samples,
+        NES: getPercentDiff(
+          +datum['NES (Neural Engagement Score)'],
+          +datum['Benchmark']
+        ),
+        issues: datum.Issue.trim().split(','),
+        offset: timeParse('%M:%S')(datum.offset),
+      })).then(data => {
+        this.loading = false
+
+        this.advertisements = nest()
+          .key(d => d.contentId)
+          .map(data)
       })
     },
   },
