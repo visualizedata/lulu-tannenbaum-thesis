@@ -1,5 +1,5 @@
 <template>
-  <div id="linechart-svg-container">
+  <div :id="id" class="linechart-svg-container">
     <svg />
     <h5>Topline Scores</h5>
     <p>
@@ -22,7 +22,7 @@ import {
 } from 'd3'
 import _ from 'lodash'
 export default {
-  props: ['brainData', 'reportXScale'],
+  props: ['brainData', 'reportXScale', 'id'],
   mounted() {
     this.renderChart(this.brainData)
   },
@@ -37,8 +37,8 @@ export default {
   },
   methods: {
     renderChart(brainData) {
-      console.log(brainData)
-      const container = select('#linechart-svg-container').node()
+      const container = select(`#${this.id}.linechart-svg-container`).node()
+      console.log('container', container)
       const margin = 30
       const svgWidth = container.clientWidth
 
@@ -46,7 +46,7 @@ export default {
       const chartWidth = svgWidth - 2 * margin
       const chartHeight = svgHeight - 2 * margin
 
-      const svg = select('#popup svg')
+      const svg = select(`#${this.id} svg`)
         .attr('width', svgWidth)
         .attr('height', svgHeight)
 

@@ -1,19 +1,5 @@
 <template>
-  <div id="maincontent">
-    <h3>
-      <strong>People subconsciously</strong> engage with messaging about The Economy, Healthcare, and Climate Change, but
-      <strong>not</strong> to messaging about Immigration or Gun Control.
-    </h3>
-    <div id="analysis">
-      <div>
-        <h3>Some Title</h3>
-        <video controls src="/videos/Audi Presents- Let It Go.mp4" type="video/mp4" />
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris luctus et nisl ut porttitor. Praesent magna ante, suscipit eget convallis nec, sollicitudin non neque. Duis et tincidunt sem, quis semper elit. Praesent efficitur eleifend mauris a rutrum. In nec sem metus. Mauris dignissim bibendum bibendum. Pellentesque dolor nunc, rhoncus in aliquet vitae, vestibulum vitae nibh. Pellentesque ornare lacus a molestie consequat.</p>
-      </div>
-      <div>
-        <svg />
-      </div>
-    </div>
+  <div id="explore">
     <h3>Explore the Data</h3>
     <div>
       <video
@@ -29,7 +15,7 @@
 
 <script>
 export default {
-  name: 'Main Content',
+  name: 'Explore',
   data() {
     return {
       videoNames: [
@@ -57,7 +43,7 @@ export default {
 </script>
 
 <style>
-#maincontent {
+#explore {
   background-color: white;
   text-align: left;
   padding-top: 200px;
@@ -66,44 +52,44 @@ export default {
   padding-bottom: 200px;
 }
 
-#maincontent h3 {
+#explore h3 {
   color: #305581;
   margin: 40px 0px;
   width: 90%;
 }
 
-#maincontent p {
+#explore p {
   width: 60%;
   line-height: 125%;
   color: #305581;
 }
 
-#maincontent #img-row {
+#explore #img-row {
   position: absolute;
   bottom: 100px;
 }
 
-#maincontent img:nth-of-type(1) {
+#explore img:nth-of-type(1) {
   width: 115px;
   margin-right: 30px;
 }
-#maincontent img:nth-of-type(2) {
+#explore img:nth-of-type(2) {
   width: 135px;
 }
 
-#maincontent #analysis {
+#explore #analysis {
   display: flex;
 }
 
-#maincontent #analysis > div {
+#explore #analysis > div {
   flex: 1;
 }
 
-#maincontent #analysis video {
+#explore #analysis video {
   width: 100%;
 }
 
-#maincontent video {
+#explore video {
   width: 200px;
   height: auto;
   margin: 10px;

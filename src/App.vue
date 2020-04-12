@@ -5,7 +5,32 @@
     <div class="alert alert-info" v-show="loading">Loading...</div>
 
     <BarChart :issues="issues"></BarChart>
-    <MainContent />
+    <div>
+      <h3>
+        <strong>People subconsciously</strong> engage with messaging about The Economy, Healthcare, and Climate Change, but
+        <strong>not</strong> to messaging about Immigration or Gun Control.
+      </h3>
+    </div>
+    <Analysis
+      :content="trumpAnalysis"
+      id="trump"
+      title="Trump's emphasis on the economy"
+      description="The highly inspirational..."
+    />
+    <div>
+      <h3>
+        While the tone of Trump's official advertisement is highlighly inspirational, a
+        <strong>fearful tone</strong> is the most engaging.
+      </h3>
+      <p>From an evolutionary...</p>
+    </div>
+    <Analysis
+      :content="bloombergAnalysis"
+      id="bloomberg"
+      title="Bloomberg utilized fear in advertising"
+      description="Bloomber utilizes..."
+    />
+    <Explore />
     <Methodology />
     <PopUp :content="currentAd" />
   </div>
@@ -15,7 +40,8 @@
 import BarChart from './components/BarChart.vue'
 import Landing from './components/Landing.vue'
 import Description from './components/Description.vue'
-import MainContent from './components/MainContent.vue'
+import Analysis from './components/Analysis.vue'
+import Explore from './components/Explore.vue'
 import Methodology from './components/Methodology.vue'
 import PopUp from './components/PopUp.vue'
 import { csv, nest, timeParse } from 'd3'
@@ -29,7 +55,8 @@ export default {
     BarChart,
     Landing,
     Description,
-    MainContent,
+    Analysis,
+    Explore,
     Methodology,
     PopUp,
   },
@@ -51,6 +78,24 @@ export default {
         return _.find(
           this.advertisements,
           (v, k) => k.slice(1) === '3l7IQbu3V0q9JKxHvUSDzC'
+        )
+      }
+      return null
+    },
+    trumpAnalysis: function() {
+      if (_.size(this.advertisements)) {
+        return _.find(
+          this.advertisements,
+          (v, k) => k.slice(1) === '6gRl8mmKFzqSNJQKBOZRsu'
+        )
+      }
+      return null
+    },
+    bloombergAnalysis: function() {
+      if (_.size(this.advertisements)) {
+        return _.find(
+          this.advertisements,
+          (v, k) => k.slice(1) === '2ZSfXfc4mZ71U4kB17iTIf'
         )
       }
       return null

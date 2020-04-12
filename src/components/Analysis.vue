@@ -1,20 +1,12 @@
 <template>
-  <div id="popup">
-    <button id="close">X</button>
-    <h3>{{name}}</h3>
+  <div id="analysis">
+    <h3>{{title}}</h3>
     <div class="flex-container">
       <div>
-        <video id="yang" controls :src="`/videos/${name}.mp4`" type="video/mp4" />
-        <div id="tags">
-          <span v-for="issue in issues" v-bind:key="issue">{{issue}}</span>
-        </div>
+        <video :id="id" controls :src="`/videos/${name}.mp4`" type="video/mp4" />
+        <p>{{description}}</p>
       </div>
-      <AnimatedLineChart
-        id="yang"
-        v-if="content"
-        :brainData="content"
-        :reportXScale="reportXScale"
-      />
+      <AnimatedLineChart v-if="content" :brainData="content" :reportXScale="reportXScale" :id="id" />
     </div>
   </div>
 </template>
@@ -24,27 +16,19 @@ import _ from 'lodash'
 import AnimatedLineChart from './AnimatedLineChart'
 
 export default {
-  name: 'PopUp',
+  name: 'TrumpAnalysis',
   components: {
     AnimatedLineChart,
   },
-  props: ['content'],
   computed: {
     name: function() {
       return _.get(_.head(this.content), 'name')
     },
-    issues: function() {
-      return _.uniq(
-        _.filter(
-          _.flatMap(this.content, c => c.issues),
-          i => !!i
-        )
-      )
-    },
   },
+  props: ['content', 'id', 'title', 'description'],
   methods: {
     reportXScale(xScale, animationOverlay) {
-      this.registerVideoPlayback('yang', xScale, animationOverlay)
+      this.registerVideoPlayback(this.id, xScale, animationOverlay)
     },
     registerVideoPlayback(id, xScale, animationOverlay) {
       const videoElement = document.getElementById(id)
@@ -61,7 +45,7 @@ export default {
 </script>
 
 <style>
-#popup {
+#analysis {
   height: 100vh;
   background-color: white;
   /* background: url('../assets/screenshot.png'); */
@@ -71,7 +55,7 @@ export default {
   padding-top: 60px;
   position: relative;
 }
-#popup #close {
+#analysis #close {
   position: absolute;
   right: 1rem;
   top: 1rem;
@@ -81,21 +65,21 @@ export default {
   height: 2rem;
   width: 2rem;
 }
-#popup h3 {
+#analysis h3 {
   margin-bottom: 4rem;
 }
-#popup .flex-container {
+#analysis .flex-container {
   display: flex;
 }
-#popup .flex-container > div {
+#analysis .flex-container > div {
   flex: 1;
 }
-#popup video {
+#analysis video {
   width: 92%;
   height: auto;
   margin-bottom: 2.5rem;
 }
-#popup #tags span {
+#analysis #tags span {
   padding: 0.2rem 0.5rem;
   border-radius: 1rem;
   border: black solid 1px;
