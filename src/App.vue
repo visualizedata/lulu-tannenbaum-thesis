@@ -71,17 +71,20 @@ export default {
     getAdvertisementData() {
       this.loading = true
 
-      csv('/data/braindata.csv', datum => ({
-        contentId: datum.content_id,
-        name: datum.name,
-        samples: +datum.samples,
-        NES: getPercentDiff(
-          +datum['NES (Neural Engagement Score)'],
-          +datum['Benchmark']
-        ),
-        issues: datum.Issue.trim().split(','),
-        offset: timeParse('%M:%S')(datum.offset),
-      })).then(data => {
+      csv('/data/braindata.csv', datum => {
+        const date = timeParse('%M:%S')(datum.offset)
+        return {
+          contentId: datum.content_id,
+          name: datum.name,
+          samples: +datum.samples,
+          NES: getPercentDiff(
+            +datum['NES (Neural Engagement Score)'],
+            +datum['Benchmark']
+          ),
+          issues: datum.Issue.trim().split(','),
+          offset: date.getSeconds(),
+        }
+      }).then(data => {
         this.loading = false
 
         this.advertisements = nest()
