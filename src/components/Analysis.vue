@@ -1,6 +1,9 @@
 <template>
   <div id="analysis">
-    <h3>{{title}}</h3>
+    <h3>
+      {{title}}
+      <button class="more-info" v-on:click="onMoreInfoClick">i</button>
+    </h3>
     <div class="flex-container">
       <div>
         <p>{{description}}</p>
@@ -31,7 +34,7 @@ export default {
       return _.split(_.get(_.head(this.content), 'tags'), '-')
     },
   },
-  props: ['content', 'id', 'title', 'description'],
+  props: ['content', 'id', 'title', 'description', 'onMoreInfoClick'],
   methods: {
     reportXScale(xScale, animationOverlay) {
       this.registerVideoPlayback(this.id, xScale, animationOverlay)
@@ -61,16 +64,17 @@ export default {
   padding-top: 60px;
   position: relative;
 }
-#analysis #close {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
+#analysis .more-info {
+  font-size: 1.25rem;
+  font-weight: bold;
   -webkit-appearance: none;
   border-radius: 50%;
   border: 1px solid black;
-  height: 2rem;
-  width: 2rem;
+  height: 1.75rem;
+  width: 1.75rem;
+  vertical-align: middle;
 }
+
 #analysis h3 {
   margin-bottom: 4rem;
 }

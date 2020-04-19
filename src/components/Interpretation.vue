@@ -1,6 +1,6 @@
 <template>
   <div id="interpretation" class="full-height">
-    <button id="close">X</button>
+    <button class="close" v-on:click="onClose">X</button>
     <div>
       <h3>What does the data mean?</h3>
       <p>Neural Engagement...</p>
@@ -14,6 +14,7 @@
 <script>
 export default {
   name: 'Interpretation',
+  props: ['onClose'],
 }
 </script>
 
@@ -24,7 +25,9 @@ export default {
   display: flex;
   padding-top: 150px;
   padding-left: 63px;
-  position: relative;
+  position: fixed;
+  left: 0px;
+  top: 0px;
 }
 
 #interpretation > div {

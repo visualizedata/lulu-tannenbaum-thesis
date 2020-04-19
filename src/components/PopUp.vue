@@ -1,6 +1,6 @@
 <template>
   <div id="popup">
-    <button id="close">X</button>
+    <button class="close" v-on:click="onClose">X</button>
     <h3>{{name}}</h3>
     <div class="flex-container">
       <div>
@@ -28,7 +28,7 @@ export default {
     AnimatedLineChart,
     Tags,
   },
-  props: ['content'],
+  props: ['content', 'onClose'],
   computed: {
     name: function() {
       return _.get(_.head(this.content), 'name')
@@ -64,7 +64,9 @@ export default {
   text-align: left;
   padding-left: 63px;
   padding-top: 60px;
-  position: relative;
+  position: fixed;
+  top: 0px;
+  left: 0px;
 }
 
 #popup h3 {

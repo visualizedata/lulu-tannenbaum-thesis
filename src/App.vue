@@ -3,7 +3,6 @@
     <Landing />
     <Description />
     <div class="alert alert-info" v-show="loading">Loading...</div>
-
     <BarChart :issues="issues"></BarChart>
     <UnconsciousEngagment />
     <Analysis
@@ -11,6 +10,7 @@
       id="trump"
       title="Trump's emphasis on the economy"
       description="The highly inspirational..."
+      :onMoreInfoClick="toggleShowHowToRead"
     />
     <div id="tone" class="full-height">
       <h3>
@@ -24,11 +24,12 @@
       id="bloomberg"
       title="Bloomberg utilized fear in advertising"
       description="Bloomber utilizes..."
+      :onMoreInfoClick="toggleShowHowToRead"
     />
-    <Explore />
+    <Explore :onClick="exploreAd" :ads="advertisements" />
     <Methodology />
-    <PopUp :content="currentAd" />
-    <Interpretation />
+    <PopUp v-if="showPopup" :content="popupContent" :onClose="toggleShowPopup" />
+    <Interpretation v-if="showHowToRead" :onClose="toggleShowHowToRead" />
   </div>
 </template>
 
@@ -66,6 +67,9 @@ export default {
       errored: false,
       issues: [],
       advertisements: [],
+      showPopup: false,
+      showHowToRead: false,
+      popupContent: null,
     }
   },
   mounted() {
@@ -73,15 +77,6 @@ export default {
     this.getAdvertisementData()
   },
   computed: {
-    currentAd: function() {
-      if (_.size(this.advertisements)) {
-        return _.find(
-          this.advertisements,
-          (v, k) => k.slice(1) === '3l7IQbu3V0q9JKxHvUSDzC'
-        )
-      }
-      return null
-    },
     trumpAnalysis: function() {
       if (_.size(this.advertisements)) {
         return _.find(
@@ -140,6 +135,22 @@ export default {
           .map(data)
       })
     },
+    toggleShowPopup() {
+      this.showPopup = !this.showPopup
+    },
+    toggleShowHowToRead() {
+      this.showHowToRead = !this.showHowToRead
+    },
+    updatePopupContent: function(contentId) {
+      const ad = _.find(this.advertisements, (v, k) => k.slice(1) === contentId)
+      console.log('new ad', ad)
+      this.popupContent = ad
+    },
+    exploreAd(contentId) {
+      console.log('contentID', contentId)
+      this.toggleShowPopup()
+      this.updatePopupContent(contentId)
+    },
   },
 }
 </script>
@@ -152,6 +163,7 @@ export default {
   text-align: center;
   color: #ffffff;
   background-color: #305581;
+  position: relative;
 }
 #app h1 {
   font-size: 80px;
@@ -165,7 +177,7 @@ export default {
 #app .full-height {
   height: 100vh;
 }
-#app #close {
+#app .close {
   position: absolute;
   right: 1rem;
   top: 1rem;

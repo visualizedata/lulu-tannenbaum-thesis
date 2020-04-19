@@ -3,41 +3,29 @@
     <h3>Explore the Data</h3>
     <div>
       <video
-        v-for="videoName in videoNames"
-        v-bind:key="videoName"
+        v-for="ad in iterativeAds"
+        v-bind:key="ad.name"
         class="video"
-        :src="`/videos/${videoName}`"
+        :src="`/videos/${ad.name}.mp4`"
         type="video/mp4"
+        v-on:click="onClick(ad.content_id)"
       />
     </div>
   </div>
 </template>
 
 <script>
+import _ from 'lodash'
 export default {
   name: 'Explore',
-  data() {
-    return {
-      videoNames: [
-        'Andrew Yang - Right Now.mp4',
-        'Audi Presents- Let It Go.mp4',
-        'Bones | Joe Biden for President.mp4',
-        'Donald J Trump - Stronger, Safer, More Prosperous.mp4',
-        'Fight From the Heart (Warren for President Campaign Ad).mp4',
-        'George | Mike Bloomberg for President.mp4',
-        'Greta Thunberg Tells Davos Delegates to Act as If You Loved Your Children.mp4',
-        'Mike Bloomberg - Trump Disrespects Our Troops.mp4',
-        'NFL Media Originals - We Are in This Together.mp4',
-        'OLAY® #MAKESPACEFORWOMEN | SUPER BOWL LIV OFFICIAL COMMERCIAL.mp4',
-        'Pete Buttigieg explains why Trump should be removed from office.mp4',
-        "SE Cupp- Trump might be impeached, but he's unleashed.mp4",
-        'SodaStream Discovers Water On Mars.mp4',
-        'The Courage to Change | Alexandria Ocasio-Cortez.mp4',
-        'Trump team uses stock photo models in reelection ads.mp4',
-        'VISION | Bernie Sanders 2020.mp4',
-        'Watch Nancy Pelosi Rip Up Copy Of President Donald Trump’s State Of The Union Speech | NBC News.mp4',
-      ],
-    }
+  props: ['onClick', 'ads'],
+  computed: {
+    iterativeAds: function() {
+      return _.map(this.ads.entries(), ({ key, value }) => ({
+        content_id: key,
+        name: _.get(_.head(value), 'name'),
+      }))
+    },
   },
 }
 </script>
