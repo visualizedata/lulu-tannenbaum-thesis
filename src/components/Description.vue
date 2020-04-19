@@ -1,6 +1,6 @@
 <template>
   <div id="description">
-    <h2>The Study</h2>
+    <h2>"The mind that we cannot see..."</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris luctus et
       nisl ut porttitor. Praesent magna ante, suscipit eget convallis nec,

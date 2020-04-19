@@ -5,19 +5,14 @@
     <div class="alert alert-info" v-show="loading">Loading...</div>
 
     <BarChart :issues="issues"></BarChart>
-    <div>
-      <h3>
-        <strong>People subconsciously</strong> engage with messaging about The Economy, Healthcare, and Climate Change, but
-        <strong>not</strong> to messaging about Immigration or Gun Control.
-      </h3>
-    </div>
+    <UnconsciousEngagment />
     <Analysis
       :content="trumpAnalysis"
       id="trump"
       title="Trump's emphasis on the economy"
       description="The highly inspirational..."
     />
-    <div>
+    <div id="tone" class="full-height">
       <h3>
         While the tone of Trump's official advertisement is highlighly inspirational, a
         <strong>fearful tone</strong> is the most engaging.
@@ -33,17 +28,20 @@
     <Explore />
     <Methodology />
     <PopUp :content="currentAd" />
+    <Interpretation />
   </div>
 </template>
 
 <script>
 import BarChart from './components/BarChart.vue'
+import UnconsciousEngagment from './components/UnconsciousEngagment.vue'
 import Landing from './components/Landing.vue'
 import Description from './components/Description.vue'
 import Analysis from './components/Analysis.vue'
 import Explore from './components/Explore.vue'
 import Methodology from './components/Methodology.vue'
 import PopUp from './components/PopUp.vue'
+import Interpretation from './components/Interpretation.vue'
 import { csv, nest, timeParse } from 'd3'
 import _ from 'lodash'
 
@@ -53,12 +51,14 @@ export default {
   name: 'App',
   components: {
     BarChart,
+    UnconsciousEngagment,
     Landing,
     Description,
     Analysis,
     Explore,
     Methodology,
     PopUp,
+    Interpretation,
   },
   data() {
     return {
@@ -104,7 +104,6 @@ export default {
   methods: {
     getIssues() {
       this.loading = true
-
       csv('/data/surveyData.csv', datum => ({
         issue: datum.Issue,
         percentage: +_.replace(datum.Percentage, '%', '') / 100,
@@ -113,8 +112,9 @@ export default {
         this.issues = _.shuffle(data)
       })
     },
-    getAdvertisementData() {
+    async getAdvertisementData() {
       this.loading = true
+      const tags = await csv('data/tagsData.csv')
 
       csv('/data/braindata.csv', datum => {
         const date = timeParse('%M:%S')(datum.offset)
@@ -126,7 +126,10 @@ export default {
             +datum['NES (Neural Engagement Score)'],
             +datum['Benchmark']
           ),
-          issues: datum.Issue.trim().split(','),
+          tags: _.get(
+            _.find(tags, t => t.content_id == datum.content_id),
+            'issue'
+          ),
           offset: date.getSeconds(),
         }
       }).then(data => {
@@ -158,5 +161,22 @@ export default {
 }
 #app h3 {
   font-size: 48px;
+}
+#app .full-height {
+  height: 100vh;
+}
+#app #close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  -webkit-appearance: none;
+  border-radius: 50%;
+  border: 1px solid black;
+  height: 2rem;
+  width: 2rem;
+}
+#app #tone {
+  padding-top: 400px;
+  text-align: left;
 }
 </style>

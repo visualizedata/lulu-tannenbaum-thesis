@@ -5,9 +5,7 @@
     <div class="flex-container">
       <div>
         <video id="yang" controls :src="`/videos/${name}.mp4`" type="video/mp4" />
-        <div id="tags">
-          <span v-for="issue in issues" v-bind:key="issue">{{issue}}</span>
-        </div>
+        <Tags v-bind:tags="tags" />
       </div>
       <AnimatedLineChart
         id="yang"
@@ -22,24 +20,21 @@
 <script>
 import _ from 'lodash'
 import AnimatedLineChart from './AnimatedLineChart'
+import Tags from './Tags'
 
 export default {
   name: 'PopUp',
   components: {
     AnimatedLineChart,
+    Tags,
   },
   props: ['content'],
   computed: {
     name: function() {
       return _.get(_.head(this.content), 'name')
     },
-    issues: function() {
-      return _.uniq(
-        _.filter(
-          _.flatMap(this.content, c => c.issues),
-          i => !!i
-        )
-      )
+    tags: function() {
+      return _.split(_.get(_.head(this.content), 'tags'), '-')
     },
   },
   methods: {
@@ -71,16 +66,7 @@ export default {
   padding-top: 60px;
   position: relative;
 }
-#popup #close {
-  position: absolute;
-  right: 1rem;
-  top: 1rem;
-  -webkit-appearance: none;
-  border-radius: 50%;
-  border: 1px solid black;
-  height: 2rem;
-  width: 2rem;
-}
+
 #popup h3 {
   margin-bottom: 4rem;
 }
@@ -94,11 +80,5 @@ export default {
   width: 92%;
   height: auto;
   margin-bottom: 2.5rem;
-}
-#popup #tags span {
-  padding: 0.2rem 0.5rem;
-  border-radius: 1rem;
-  border: black solid 1px;
-  margin: 0.25rem;
 }
 </style>

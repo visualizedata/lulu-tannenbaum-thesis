@@ -3,8 +3,9 @@
     <h3>{{title}}</h3>
     <div class="flex-container">
       <div>
-        <video :id="id" controls :src="`/videos/${name}.mp4`" type="video/mp4" />
         <p>{{description}}</p>
+        <video :id="id" controls :src="`/videos/${name}.mp4`" type="video/mp4" />
+        <Tags :tags="tags" />
       </div>
       <AnimatedLineChart v-if="content" :brainData="content" :reportXScale="reportXScale" :id="id" />
     </div>
@@ -14,15 +15,20 @@
 <script>
 import _ from 'lodash'
 import AnimatedLineChart from './AnimatedLineChart'
+import Tags from './Tags'
 
 export default {
   name: 'TrumpAnalysis',
   components: {
     AnimatedLineChart,
+    Tags,
   },
   computed: {
     name: function() {
       return _.get(_.head(this.content), 'name')
+    },
+    tags: function() {
+      return _.split(_.get(_.head(this.content), 'tags'), '-')
     },
   },
   props: ['content', 'id', 'title', 'description'],
