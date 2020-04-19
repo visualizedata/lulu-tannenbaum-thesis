@@ -1,11 +1,13 @@
 <template>
   <div :id="id" class="linechart-svg-container">
     <svg />
-    <h5>Topline Scores</h5>
+    <h5>Top Neural Engagment Scores</h5>
     <p>
-      Average
-      <span>+17%</span>Max Engagement
-      <span>+54%</span>
+      Current Second
+      <span class="time">0</span>
+      Average Engagment
+      <span class="avg">+17%</span>Max Engagement
+      <span class="max">+54%</span>
     </p>
   </div>
 </template>
@@ -19,6 +21,7 @@ import {
   axisLeft,
   format,
   extent,
+  timeFormat,
 } from 'd3'
 import _ from 'lodash'
 export default {
@@ -37,7 +40,8 @@ export default {
   },
   methods: {
     renderChart(brainData) {
-      const container = select(`#${this.id}.linechart-svg-container`).node()
+      console.log('THISIS', this.id)
+      const container = select(`[id="${this.id}"]`).node()
       console.log('container', container)
       const margin = 30
       const svgWidth = container.clientWidth
@@ -46,7 +50,7 @@ export default {
       const chartWidth = svgWidth - 2 * margin
       const chartHeight = svgHeight - 2 * margin
 
-      const svg = select(`#${this.id} svg`)
+      const svg = select(`[id="${this.id}"] svg`)
         .attr('width', svgWidth)
         .attr('height', svgHeight)
 
@@ -56,7 +60,7 @@ export default {
 
       const yScale = scaleLinear()
         .range([chartHeight, 0])
-        .domain([-100, 100])
+        .domain([-60, 90])
       // .domain([
       //   _.minBy(this.content, 'NES')['NES'],
       //   _.maxBy(this.content, 'NES')['NES'],
@@ -71,10 +75,24 @@ export default {
       chart
         .append('g')
         .attr('transform', `translate(0, ${chartHeight})`)
+        .attr('class', 'axis')
         .call(
-          axisBottom(xScale)
-            .ticks(0)
-            .tickValues([])
+          axisBottom(xScale).tickFormat(d =>
+            timeFormat('%M:%S')(new Date(0).setSeconds(d))
+          )
+        )
+        .selectAll('text')
+        .attr('transform', 'rotate(-45)')
+        .style('text-anchor', 'end')
+
+      chart
+        .append('g')
+        .attr('transform', `translate(0, 0)`)
+        .attr('class', 'axis')
+        .call(
+          axisLeft(yScale)
+            .tickValues([-60, -30, 0, 30, 60, 90])
+            .tickFormat(d => `${d}%`)
         )
 
       chart
@@ -93,6 +111,7 @@ export default {
 
       const progressOverlay = chart
         .append('rect')
+        .attr('transform', 'translate(1, 0)')
         .attr('width', chartWidth)
         .attr('height', chartHeight)
         .attr('fill', 'white')
@@ -112,16 +131,26 @@ export default {
         .attr('stroke-dasharray', '2 1')
         .attr('fill', 'none')
 
-      this.reportXScale(xScale, progressOverlay)
+      this.reportXScale(this.id, xScale, progressOverlay)
     },
   },
 }
 </script>
 <style>
-#popup #linechart-svg-container span {
+.linechart-svg-container span {
   color: #a44b6d;
   font-size: 1.2rem;
   font-weight: 600;
   margin: 0px 1.5rem;
+}
+
+.linechart-svg-container .axis path {
+  stroke: #5d697b;
+}
+
+.linechart-svg-container .axis text {
+  font-size: 0.5rem;
+  fill: #5d697b;
+  stroke: none;
 }
 </style>

@@ -5,7 +5,7 @@
     <div class="flex-container">
       <div>
         <video
-          id="yang"
+          :id="id"
           controls
           :src="`/videos/${name}.mp4`"
           type="video/mp4"
@@ -13,12 +13,7 @@
         />
         <Tags v-bind:tags="tags" />
       </div>
-      <AnimatedLineChart
-        id="yang"
-        v-if="content"
-        :brainData="content"
-        :reportXScale="reportXScale"
-      />
+      <AnimatedLineChart :id="id" v-if="content" :brainData="content" :reportXScale="reportXScale" />
     </div>
   </div>
 </template>
@@ -27,6 +22,7 @@
 import _ from 'lodash'
 import AnimatedLineChart from './AnimatedLineChart'
 import Tags from './Tags'
+import { select } from 'd3'
 
 export default {
   name: 'PopUp',
@@ -36,6 +32,9 @@ export default {
   },
   props: ['content', 'onClose'],
   computed: {
+    id: function() {
+      return _.get(_.head(this.content), 'contentId')
+    },
     name: function() {
       return _.get(_.head(this.content), 'name')
     },
@@ -44,17 +43,20 @@ export default {
     },
   },
   methods: {
-    reportXScale(xScale, animationOverlay) {
-      this.registerVideoPlayback('yang', xScale, animationOverlay)
+    reportXScale(id, xScale, animationOverlay) {
+      this.registerVideoPlayback(id, xScale, animationOverlay)
     },
     registerVideoPlayback(id, xScale, animationOverlay) {
       const videoElement = document.getElementById(id)
-      videoElement.ontimeupdate = e => {
-        console.log(e.timeStamp, videoElement.currentTime)
+      videoElement.ontimeupdate = () => {
         animationOverlay
           .transition()
           .duration(250)
           .attr('x', xScale(videoElement.currentTime))
+
+        select(`[id="${this.id}"] .time`).html(
+          Math.round(videoElement.currentTime)
+        )
       }
     },
   },

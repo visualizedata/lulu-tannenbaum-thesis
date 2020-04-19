@@ -27,7 +27,7 @@ import AnimatedLineChart from './AnimatedLineChart'
 import Tags from './Tags'
 
 export default {
-  name: 'TrumpAnalysis',
+  name: 'Analysis',
   components: {
     AnimatedLineChart,
     Tags,
@@ -42,13 +42,12 @@ export default {
   },
   props: ['content', 'id', 'title', 'description', 'onMoreInfoClick'],
   methods: {
-    reportXScale(xScale, animationOverlay) {
-      this.registerVideoPlayback(this.id, xScale, animationOverlay)
+    reportXScale(id, xScale, animationOverlay) {
+      this.registerVideoPlayback(id, xScale, animationOverlay)
     },
     registerVideoPlayback(id, xScale, animationOverlay) {
       const videoElement = document.getElementById(id)
-      videoElement.ontimeupdate = e => {
-        console.log(e.timeStamp, videoElement.currentTime)
+      videoElement.ontimeupdate = () => {
         animationOverlay
           .transition()
           .duration(250)
