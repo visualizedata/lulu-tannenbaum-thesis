@@ -7,7 +7,13 @@
     <div class="flex-container">
       <div>
         <p>{{description}}</p>
-        <video :id="id" controls :src="`/videos/${name}.mp4`" type="video/mp4" />
+        <video
+          :id="id"
+          controls
+          :src="`/videos/${name}.mp4`"
+          type="video/mp4"
+          :poster="`thumbnails/${name}.png`"
+        />
         <Tags :tags="tags" />
       </div>
       <AnimatedLineChart v-if="content" :brainData="content" :reportXScale="reportXScale" :id="id" />

@@ -9,6 +9,7 @@
         :src="`/videos/${ad.name}.mp4`"
         type="video/mp4"
         v-on:click="onClick(ad.content_id)"
+        :poster="`thumbnails/${ad.name}.png`"
       />
     </div>
   </div>

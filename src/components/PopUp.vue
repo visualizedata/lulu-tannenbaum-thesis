@@ -4,7 +4,13 @@
     <h3>{{name}}</h3>
     <div class="flex-container">
       <div>
-        <video id="yang" controls :src="`/videos/${name}.mp4`" type="video/mp4" />
+        <video
+          id="yang"
+          controls
+          :src="`/videos/${name}.mp4`"
+          type="video/mp4"
+          :poster="`thumbnails/${name}.png`"
+        />
         <Tags v-bind:tags="tags" />
       </div>
       <AnimatedLineChart
