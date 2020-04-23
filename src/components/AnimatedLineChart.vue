@@ -40,9 +40,9 @@ export default {
   },
   methods: {
     renderChart(brainData) {
-      console.log('THISIS', this.id)
-      const container = select(`[id="${this.id}"]`).node()
-      console.log('container', container)
+      const container = select(
+        `[id="${this.id}"].linechart-svg-container`
+      ).node()
       const margin = 30
       const svgWidth = container.clientWidth
 
@@ -130,8 +130,16 @@ export default {
         .attr('stroke', 'black')
         .attr('stroke-dasharray', '2 1')
         .attr('fill', 'none')
+      const first = _.head(brainData)
+      const pFormat = format('+.0%')
+      select(container)
+        .select('.avg')
+        .html(pFormat(_.get(first, 'average')))
+      select(container)
+        .select('.max')
+        .html(pFormat(_.get(first, 'max')))
 
-      this.reportXScale(this.id, xScale, progressOverlay)
+      this.reportXScale(this.id, brainData, xScale, progressOverlay)
     },
   },
 }

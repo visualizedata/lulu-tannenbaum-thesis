@@ -110,9 +110,13 @@ export default {
     async getAdvertisementData() {
       this.loading = true
       const tags = await csv('data/tagsData.csv')
-
+      const toplineData = await csv('data/toplineData.csv')
       csv('/data/braindata.csv', datum => {
         const date = timeParse('%M:%S')(datum.offset)
+        const toplineDatum = _.find(
+          toplineData,
+          d => d.content_id == datum.content_id
+        )
         return {
           contentId: datum.content_id,
           name: datum.name,
@@ -126,6 +130,8 @@ export default {
             'issue'
           ),
           offset: date.getSeconds(),
+          average: toplineDatum.average,
+          max: toplineDatum.max,
         }
       }).then(data => {
         this.loading = false

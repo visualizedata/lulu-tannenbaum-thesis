@@ -22,7 +22,14 @@
 import _ from 'lodash'
 import AnimatedLineChart from './AnimatedLineChart'
 import Tags from './Tags'
-import { select } from 'd3'
+import { select, bisector, format } from 'd3'
+
+const bisectOffset = bisector(d => d.offset).left
+const findCurrentScore = (time, brainData) => {
+  const closesIdx = bisectOffset(brainData, time)
+  return _.get(brainData[closesIdx], 'NES')
+}
+const percentageFormatter = format('+.2')
 
 export default {
   name: 'PopUp',
@@ -43,20 +50,18 @@ export default {
     },
   },
   methods: {
-    reportXScale(id, xScale, animationOverlay) {
-      this.registerVideoPlayback(id, xScale, animationOverlay)
+    reportXScale(id, brainData, xScale, animationOverlay) {
+      this.registerVideoPlayback(id, brainData, xScale, animationOverlay)
     },
-    registerVideoPlayback(id, xScale, animationOverlay) {
+    registerVideoPlayback(id, brainData, xScale, animationOverlay) {
       const videoElement = document.getElementById(id)
       videoElement.ontimeupdate = () => {
         animationOverlay
           .transition()
           .duration(250)
           .attr('x', xScale(videoElement.currentTime))
-
-        select(`[id="${this.id}"] .time`).html(
-          Math.round(videoElement.currentTime)
-        )
+        const NES = findCurrentScore(videoElement.currentTime, brainData)
+        select(`[id="${this.id}"] .time`).html(`${percentageFormatter(NES)}%`)
       }
     },
   },
