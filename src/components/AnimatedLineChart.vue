@@ -4,7 +4,7 @@
     <h5>Top Neural Engagment Scores</h5>
     <p>
       Current Second
-      <span class="time">0</span>
+      <span class="time">0%</span>
       Average Engagment
       <span class="avg">+17%</span>Max Engagement
       <span class="max">+54%</span>
@@ -40,6 +40,10 @@ export default {
   },
   methods: {
     renderChart(brainData) {
+      console.log('BRAIN DATA', brainData)
+      select(`[id="${this.id}"].linechart-svg-container svg`)
+        .selectAll('*')
+        .remove()
       const container = select(
         `[id="${this.id}"].linechart-svg-container`
       ).node()
@@ -127,9 +131,11 @@ export default {
             .x(d => xScale(d.offset))
             .y(yScale(0))
         )
-        .attr('stroke', 'black')
-        .attr('stroke-dasharray', '2 1')
+        .attr('stroke', '#3A3737')
+        .attr('stroke-dasharray', '3 1')
+        .attr('stroke-width', '0.75')
         .attr('fill', 'none')
+
       const first = _.head(brainData)
       const pFormat = format('+.0%')
       select(container)
@@ -153,9 +159,12 @@ export default {
 }
 
 .linechart-svg-container .axis path {
-  stroke: #5d697b;
+  stroke: #e8ebef;
 }
 
+.linechart-svg-container .axis .tick line {
+  stroke: #e8ebef;
+}
 .linechart-svg-container .axis text {
   font-size: 0.5rem;
   fill: #5d697b;

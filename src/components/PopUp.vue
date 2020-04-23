@@ -7,9 +7,9 @@
         <video
           :id="id"
           controls
-          :src="`/videos/${name}.mp4`"
+          :src="`/videos/${videoName}.mp4`"
           type="video/mp4"
-          :poster="`thumbnails/${name}.png`"
+          :poster="`thumbnails/${videoName}.png`"
         />
         <Tags v-bind:tags="tags" />
       </div>
@@ -44,6 +44,9 @@ export default {
     },
     name: function() {
       return _.get(_.head(this.content), 'name')
+    },
+    videoName: function() {
+      return _.get(_.head(this.content), 'videoName')
     },
     tags: function() {
       return _.split(_.get(_.head(this.content), 'tags'), '-')

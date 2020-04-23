@@ -120,6 +120,7 @@ export default {
         return {
           contentId: datum.content_id,
           name: datum.name,
+          videoName: datum.videoName,
           samples: +datum.samples,
           NES: getPercentDiff(
             +datum['NES (Neural Engagement Score)'],
@@ -129,13 +130,13 @@ export default {
             _.find(tags, t => t.content_id == datum.content_id),
             'issue'
           ),
-          offset: date.getSeconds(),
+          offset: date.getMinutes() * 60 + date.getSeconds(),
           average: toplineDatum.average,
           max: toplineDatum.max,
         }
       }).then(data => {
         this.loading = false
-
+        console.log(data)
         this.advertisements = nest()
           .key(d => d.contentId)
           .map(data)
@@ -149,7 +150,6 @@ export default {
     },
     updatePopupContent: function(contentId) {
       const ad = _.find(this.advertisements, (v, k) => k.slice(1) === contentId)
-      console.log('new ad', ad)
       this.popupContent = ad
     },
     exploreAd(contentId) {
