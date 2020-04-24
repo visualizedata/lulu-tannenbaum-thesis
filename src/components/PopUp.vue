@@ -72,6 +72,14 @@ export default {
 </script>
 
 <style>
+@keyframes slideInUp {
+  from {
+    top: 100%;
+  }
+  to {
+    top: 0px;
+  }
+}
 #popup {
   height: 100vh;
   background-color: white;
@@ -81,8 +89,8 @@ export default {
   padding-left: 63px;
   padding-top: 60px;
   position: fixed;
-  top: 0px;
   left: 0px;
+  animation: slideInUp 0.5s forwards;
 }
 
 #popup h3 {

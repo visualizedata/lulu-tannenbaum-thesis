@@ -19,6 +19,14 @@ export default {
 </script>
 
 <style>
+@keyframes slideDown {
+  from {
+    top: -100%;
+  }
+  to {
+    top: 0px;
+  }
+}
 #interpretation {
   background-color: white;
   text-align: left;
@@ -27,7 +35,7 @@ export default {
   padding-left: 63px;
   position: fixed;
   left: 0px;
-  top: 0px;
+  animation: slideDown 0.5s forwards;
 }
 
 #interpretation > div {

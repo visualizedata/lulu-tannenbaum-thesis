@@ -143,7 +143,6 @@ export default {
   font-size: 1.2rem;
   font-weight: 700;
   border-radius: 0;
-  max-width: 200px;
 }
 select::-ms-expand {
   display: none;

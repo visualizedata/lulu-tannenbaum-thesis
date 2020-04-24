@@ -25,6 +25,7 @@
 import _ from 'lodash'
 import AnimatedLineChart from './AnimatedLineChart'
 import Tags from './Tags'
+import { select } from 'd3'
 
 export default {
   name: 'Analysis',
@@ -45,11 +46,11 @@ export default {
   },
   props: ['content', 'id', 'title', 'description', 'onMoreInfoClick'],
   methods: {
-    reportXScale(id, xScale, animationOverlay) {
+    reportXScale(id, brainData, xScale, animationOverlay) {
       this.registerVideoPlayback(id, xScale, animationOverlay)
     },
     registerVideoPlayback(id, xScale, animationOverlay) {
-      const videoElement = document.getElementById(id)
+      const videoElement = select(`#analysis [id="${id}"]`).node()
       videoElement.ontimeupdate = () => {
         animationOverlay
           .transition()
