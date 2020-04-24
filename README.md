@@ -1,1 +1,3 @@
-Repository for PGDV 5210 - Major Studio 2, Spring 2020
+## Your Brain on Political Media
+
+![Thesis Preview](https://github.com/lulujordanna/thesis/blob/master/preview.png)
