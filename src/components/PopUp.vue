@@ -25,11 +25,11 @@ import Tags from './Tags'
 import { select, bisector, format } from 'd3'
 
 const bisectOffset = bisector(d => d.offset).left
-const findCurrentScore = (time, brainData) => {
+export const findCurrentScore = (time, brainData) => {
   const closesIdx = bisectOffset(brainData, time)
   return _.get(brainData[closesIdx], 'NES')
 }
-const percentageFormatter = format('+.2')
+export const percentageFormatter = format('+.2')
 
 export default {
   name: 'PopUp',

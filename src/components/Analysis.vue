@@ -24,8 +24,9 @@
 <script>
 import _ from 'lodash'
 import AnimatedLineChart from './AnimatedLineChart'
-import Tags from './Tags'
 import { select } from 'd3'
+import Tags from './Tags'
+import { percentageFormatter, findCurrentScore } from './PopUp'
 
 export default {
   name: 'Analysis',
@@ -47,15 +48,17 @@ export default {
   props: ['content', 'id', 'title', 'description', 'onMoreInfoClick'],
   methods: {
     reportXScale(id, brainData, xScale, animationOverlay) {
-      this.registerVideoPlayback(id, xScale, animationOverlay)
+      this.registerVideoPlayback(id, brainData, xScale, animationOverlay)
     },
-    registerVideoPlayback(id, xScale, animationOverlay) {
+    registerVideoPlayback(id, brainData, xScale, animationOverlay) {
       const videoElement = select(`#analysis [id="${id}"]`).node()
       videoElement.ontimeupdate = () => {
         animationOverlay
           .transition()
           .duration(250)
           .attr('x', xScale(videoElement.currentTime))
+        const NES = findCurrentScore(videoElement.currentTime, brainData)
+        select(`[id="${this.id}"] .time`).html(`${percentageFormatter(NES)}%`)
       }
     },
   },

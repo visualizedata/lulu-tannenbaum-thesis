@@ -7,6 +7,8 @@
     <p>
       Current Second
       <span class="time metadata">0%</span>
+    </p>
+    <p>
       Average Engagment
       <span class="avg metadata">+17%</span>Max Engagement
       <span class="max metadata">+54%</span>
