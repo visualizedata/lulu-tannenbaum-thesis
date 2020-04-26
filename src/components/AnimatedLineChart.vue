@@ -26,10 +26,11 @@ import {
   format,
   extent,
   timeFormat,
+  event,
 } from 'd3'
 import _ from 'lodash'
 export default {
-  props: ['brainData', 'reportXScale', 'id'],
+  props: ['brainData', 'reportXScale', 'updateVideoTime', 'id'],
   mounted() {
     this.renderChart(this.brainData)
   },
@@ -131,6 +132,12 @@ export default {
             .x(d => xScale(d.offset))
             .y(yScale(0))
         )
+
+      svg.on('click', () => {
+        const xOffset = event.offsetX - margin
+        const newTime = xScale.invert(xOffset)
+        this.updateVideoTime(this.id, newTime)
+      })
 
       const first = _.head(brainData)
       const pFormat = format('+.0%')

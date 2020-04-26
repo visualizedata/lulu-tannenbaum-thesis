@@ -13,7 +13,13 @@
         />
         <Tags v-bind:tags="tags" />
       </div>
-      <AnimatedLineChart :id="id" v-if="content" :brainData="content" :reportXScale="reportXScale" />
+      <AnimatedLineChart
+        :id="id"
+        v-if="content"
+        :brainData="content"
+        :reportXScale="reportXScale"
+        :updateVideoTime="updateVideoTime"
+      />
     </div>
   </div>
 </template>
@@ -53,6 +59,11 @@ export default {
     },
   },
   methods: {
+    updateVideoTime(id, newTime) {
+      const videoElement = select(`[id="${id}"]`).node()
+      videoElement.pause()
+      videoElement.currentTime = newTime
+    },
     reportXScale(id, brainData, xScale, animationOverlay) {
       this.registerVideoPlayback(id, brainData, xScale, animationOverlay)
     },

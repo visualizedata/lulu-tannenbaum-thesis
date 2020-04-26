@@ -16,7 +16,13 @@
         />
         <Tags :tags="tags" />
       </div>
-      <AnimatedLineChart v-if="content" :brainData="content" :reportXScale="reportXScale" :id="id" />
+      <AnimatedLineChart
+        v-if="content"
+        :brainData="content"
+        :reportXScale="reportXScale"
+        :updateVideoTime="updateVideoTime"
+        :id="id"
+      />
     </div>
   </div>
 </template>
@@ -47,6 +53,11 @@ export default {
   },
   props: ['content', 'id', 'title', 'description', 'onMoreInfoClick'],
   methods: {
+    updateVideoTime(id, newTime) {
+      const videoElement = select(`#analysis [id="${id}"]`).node()
+      videoElement.pause()
+      videoElement.currentTime = newTime
+    },
     reportXScale(id, brainData, xScale, animationOverlay) {
       this.registerVideoPlayback(id, brainData, xScale, animationOverlay)
     },
