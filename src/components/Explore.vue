@@ -1,6 +1,11 @@
 <template>
   <div id="explore">
-    <h3>Explore the Data</h3>
+    <div id="conclusion">
+    <h2>People unconsciously respond to creative techniques in advertising.</h2>
+    <p>This neuro data gives us a window into these unconscious processes. Our analysis revealed that fear was the most powerful tone utilized in American political media. Messaging pertaining to social-political issues of the economy, healthcare, education and climate change resonate as they align in both datasets (conscious vs, unconscious). Based on these findings, political marketing has demonstrable influence on the American voter. </p>
+    </div>
+      <h2>Explore the Data</h2>
+      <p>Click on each piece of content to view the neural engagement trace of the spot.</p>
     <div>
       <video
         v-for="ad in iterativeAds"
@@ -36,22 +41,49 @@ export default {
 #explore {
   background-color: white;
   text-align: left;
-  padding-top: 200px;
   padding-left: 63px;
   position: relative;
   padding-bottom: 200px;
 }
 
-#explore h3 {
+#explore h2 {
   color: #305581;
-  margin: 40px 0px;
-  width: 90%;
+  margin: 40px, 0px, 5px, 0px;
+  width: 60%; 
+}
+
+#explore #conclusion {
+  color: #305581;
+  display: flex; 
+  margin-bottom: 250px; 
+  padding-right: 63px;
+}
+
+#explore #conclusion h2 {
+  color: #305581;
+  width: 45%; 
+  flex-shrink: 0; 
+}
+
+#explore #conclusion p {
+  padding-left: 20px; 
+}
+
+#explore p {
+  color: #305581;
+  margin-bottom:40px;   
 }
 
 #explore video {
   width: 200px;
   height: 110px;
   margin: 10px;
-  cursor: pointer;
+  filter: grayscale(100%);
 }
+
+#explore video:hover {
+  cursor: pointer;
+  filter: grayscale(0%);
+}
+
 </style>

@@ -1,30 +1,14 @@
 <template>
   <div id="description">
-    <h2>"The mind that we cannot see..."</h2>
+    <h2>“The mind that we cannot see plays an enormous role in how our country is governed.”</h2>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris luctus et
-      nisl ut porttitor. Praesent magna ante, suscipit eget convallis nec,
-      sollicitudin non neque. Duis et tincidunt sem, quis semper elit. Praesent
-      efficitur eleifend mauris a rutrum. In nec sem metus. Mauris dignissim
-      bibendum bibendum. Pellentesque dolor nunc, rhoncus in aliquet vitae,
-      vestibulum vitae nibh. Pellentesque ornare lacus a molestie consequat.
-      Suspendisse porta ligula et vulputate fermentum. Vivamus accumsan ornare
-      mi non euismod. Pellentesque imperdiet urna quis lobortis cursus. Nunc
-      accumsan, diam vitae eleifend sollicitudin, elit elit maximus ligula, eu
-      rutrum orci nisi vel neque. Aenean nisl lorem, placerat vitae dolor at,
-      pharetra fringilla ligula.
+      As George Lakoff, a cognitive psychologist alludes to in the quote above, unconscious thought plays a substantial role in election outcomes. Voters make decisions on more than just facts; emotion, bias and unconscious factors play an important role in ones decision-making process.
     </p>
     <p>
-      Morbi vestibulum dolor quis justo elementum placerat. Duis blandit laoreet
-      tellus vel euismod. Donec venenatis leo ut lorem tempus, et rutrum massa
-      ornare. Aenean venenatis ante ac neque fringilla, ultrices aliquam nulla
-      elementum. Aliquam erat volutpat. Morbi vel mi eget est interdum volutpat
-      eu ac est. Donec vitae malesuada nulla, eleifend vulputate lacus. Sed sit
-      amet facilisis tellus, eget placerat nisi.Aenean venenatis ante ac neque
-      fringilla, ultrices aliquam nulla elementum. Aliquam erat volutpat. Morbi
-      vel mi eget est interdum volutpat eu ac est. Donec vitae malesuada nulla,
-      eleifend vulputate lacus. Sed sit amet facilisis tellus, eget placerat
-      nisi.
+    How does the advertising & media influence voters? In order to address this issue, this study and data visualization examines second-by-second brain data corresponding to political advertisements, news-clips, and corporate advertisements with socio-political messages. Socio-political issues and tone of voice were analyzed to understand what engages the research participants. 
+    </p>
+    <p>
+    The project has been created in partnership with Brainsights, a neuromarketing consultancy based in Toronto, Canada. Brainsights collected both qualitative survey data and quantitative brain data using electroencephalography (EEG) during research studies in Manhattan, New York and Chattanooga, Tennessee between February 3–6, 2020. There were a total of 166 participants across the two markets. 
     </p>
   </div>
 </template>
@@ -44,7 +28,8 @@ export default {
 }
 
 #description h2 {
-  margin: 40px 0px;
+  margin: 100px 250px 40px 0px;
+  font-weight: 700;
 }
 
 #description p {

@@ -1,8 +1,8 @@
 <template>
   <div id="flex-container">
     <div>
-      <h2>People State</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris luctus et nisl ut porttitor. Praesent magna ante, suscipit eget convallis nec, sollicitudin non neque. Duis et tincidunt sem, quis semper elit. Praesent efficitur eleifend mauris a rutrum. In nec sem metus. Mauris dignissim bibendum bibendum. Pellentesque dolor nunc, rhoncus in aliquet vitae, vestibulum vitae nibh. Pellentesque ornare lacus a molestie consequat.</p>
+      <h2>People state...</h2>
+      <p>The following bar chart is reflective of the consciously stated survey data. Participants were asked ‘What do you think are the most important issues this election?’ and were not limited to one selection. The results of the question highlight five key issues that are important to a minimum of 50% of the sample: healthcare, climate change, the economy, education and immigration.</p>
     </div>
     <div id="svg-container">
       <p id="percentage">{{ formattedPercentage }} state that they care about</p>
@@ -111,7 +111,8 @@ export default {
 </script>
 <style>
 #flex-container {
-  padding-top: 60px;
+  padding-top: 150px;
+  padding-bottom: 200px; 
   padding-left: 63px;
   display: flex;
   text-align: left;
@@ -122,6 +123,7 @@ export default {
 }
 #flex-container h2 {
   margin-bottom: 40px;
+  font-weight: 700; 
 }
 #flex-container p {
   line-height: 125%;
