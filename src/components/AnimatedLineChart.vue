@@ -2,14 +2,14 @@
   <div :id="id" class="linechart-svg-container">
     <svg />
     <span class="legend">Benchmark</span>
-    <span class="legend">NES</span>
-    <h5>Top Neural Engagment Scores</h5>
+    <span class="legend">Neural Engagement</span>
+    <h5>Top Neural Engagement Scores</h5>
     <p>
       Current Second
       <span class="time metadata">0%</span>
     </p>
     <p>
-      Average Engagment
+      Average Engagement
       <span class="avg metadata">+17%</span>Max Engagement
       <span class="max metadata">+54%</span>
     </p>
@@ -154,6 +154,7 @@ export default {
 }
 </script>
 <style>
+
 .linechart-svg-container h5 {
   margin-top: 50px;
 }
@@ -213,4 +214,5 @@ path.benchmark-line {
 .linechart-svg-container span.legend:nth-of-type(2):before {
   border-bottom: 2px solid #a44b6d;
 }
+
 </style>

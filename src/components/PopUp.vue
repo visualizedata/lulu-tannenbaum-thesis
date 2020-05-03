@@ -1,7 +1,7 @@
 <template>
   <div id="popup">
     <button class="close" v-on:click="onClose">X</button>
-    <h3>{{name}}</h3>
+    <h2>{{name}}</h2>
     <div class="flex-container">
       <div>
         <video
@@ -95,7 +95,7 @@ export default {
   height: 100vh;
   background-color: white;
   /* background: url('../assets/screenshot.png'); */
-  color: black;
+  color: #305581;
   text-align: left;
   padding-left: 63px;
   padding-top: 60px;
@@ -104,8 +104,8 @@ export default {
   animation: slideInUp 0.5s forwards;
 }
 
-#popup h3 {
-  margin-bottom: 4rem;
+#popup h2 {
+  margin-bottom: 2rem;
 }
 #popup .flex-container {
   display: flex;
@@ -117,5 +117,11 @@ export default {
   width: 92%;
   height: auto;
   margin-bottom: 2.5rem;
+}
+#popup #tags span {
+  padding: 0.2rem 0.5rem;
+  border-radius: 1rem;
+  border: #305581 solid 1px;
+  margin: 0.25rem;
 }
 </style>

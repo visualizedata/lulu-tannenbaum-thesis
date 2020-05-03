@@ -2,29 +2,13 @@
   <div id="methodology">
     <h2>Methodology</h2>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris luctus et
-      nisl ut porttitor. Praesent magna ante, suscipit eget convallis nec,
-      sollicitudin non neque. Duis et tincidunt sem, quis semper elit. Praesent
-      efficitur eleifend mauris a rutrum. In nec sem metus. Mauris dignissim
-      bibendum bibendum. Pellentesque dolor nunc, rhoncus in aliquet vitae,
-      vestibulum vitae nibh. Pellentesque ornare lacus a molestie consequat.
-      Suspendisse porta ligula et vulputate fermentum. Vivamus accumsan ornare
-      mi non euismod. Pellentesque imperdiet urna quis lobortis cursus. Nunc
-      accumsan, diam vitae eleifend sollicitudin, elit elit maximus ligula, eu
-      rutrum orci nisi vel neque. Aenean nisl lorem, placerat vitae dolor at,
-      pharetra fringilla ligula.
+      This project was completed by Lulu Tanenbaum as part of a graduate thesis for the Masters of Science in Data Visualization at the Parsons School of Design; Thesis advisor Daniel Sauter. The project was completed in partnership with Brainsights, a neuromarketing consultancy based in Toronto, Canada.  
     </p>
     <p>
-      Morbi vestibulum dolor quis justo elementum placerat. Duis blandit laoreet
-      tellus vel euismod. Donec venenatis leo ut lorem tempus, et rutrum massa
-      ornare. Aenean venenatis ante ac neque fringilla, ultrices aliquam nulla
-      elementum. Aliquam erat volutpat. Morbi vel mi eget est interdum volutpat
-      eu ac est. Donec vitae malesuada nulla, eleifend vulputate lacus. Sed sit
-      amet facilisis tellus, eget placerat nisi.Aenean venenatis ante ac neque
-      fringilla, ultrices aliquam nulla elementum. Aliquam erat volutpat. Morbi
-      vel mi eget est interdum volutpat eu ac est. Donec vitae malesuada nulla,
-      eleifend vulputate lacus. Sed sit amet facilisis tellus, eget placerat
-      nisi.
+      The data was collected by Brainsights during research studies in Manhattan, New York and Chattanooga, Tennessee between February 3–6, 2020. The data analysis was completed by Lulu Tanenbaum and the implementation of the visualization was produced by Lulu Tanenbaum and Katherine Mello. 
+    </p>
+    <p>
+    Brainsights research team used electroencephalography (EEG) to measure the unconscious brain activity of participants as they watched a variety of content. Electroencephalography records brain response at the millisecond level. Brainsights presented content reels to research participants on television and mobile devices and in varied order to control for priming/ordering effects. All data is aggregated and reports are reflective of the entire sample, not an individual participant. All reports are stripped of any personal identification information. For complete methodological review, click here.
     </p>
     <div id="img-row">
       <img src="../assets/brainsightsLogo.png" alt="brainsights logo" />

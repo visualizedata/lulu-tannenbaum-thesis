@@ -9,21 +9,21 @@
       :content="trumpAnalysis"
       id="trump"
       title="Trump's emphasis on the economy"
-      description="The highly inspirational..."
+      description="This highly inspirational advertisement focuses on Trump’s achievements through the lens of the economy. The opening scenes (first 5 seconds) are the strongest moments with an aggregated +30% neural engagement score. Play the video or click on the chart to see the data transform."
       :onMoreInfoClick="toggleShowHowToRead"
     />
-    <div id="tone" class="full-height">
+    <div id="tone">
       <h3>
-        While the tone of Trump's official advertisement is highlighly inspirational, a
-        <strong>fearful tone</strong> is the most engaging.
+        Tone of voice is a another tool use to shape public opinion in political content. In the previous advertisement, Trump utilizes an inspirational tone, which our analysis found is an effective strategy. However, data indicated that a 
+       <strong>fearful tone</strong> was even more <em><strong>engaging</strong></em>.
       </h3>
-      <p>From an evolutionary...</p>
+      <p>From an evolutionary psychology perspective, the emotion of fear can be adaptive because it focuses our attention to potential threats and, as a result, increases an organism’s odds of survival. </p>
     </div>
     <Analysis
       :content="bloombergAnalysis"
       id="bloomberg"
       title="Bloomberg utilized fear in advertising"
-      description="Bloomber utilizes..."
+      description="Bloomberg utilizes a fearful tone by highlighting Trump’s erratic and irrational behaviour. This highlights his inadequacies as President, inciting strong engagement. The creative tactics of strong audio/visual linkage underpins the success of the advertisement."
       :onMoreInfoClick="toggleShowHowToRead"
     />
     <Explore :onClick="exploreAd" :ads="advertisements" />
@@ -171,13 +171,14 @@ export default {
   position: relative;
 }
 #app h1 {
-  font-size: 80px;
+  font-size: 70px;
 }
 #app h2 {
-  font-size: 60px;
+  font-size: 40px;
+  font-weight:700; 
 }
 #app h3 {
-  font-size: 48px;
+  font-size: 40px;
 }
 #app .full-height {
   height: 100vh;
@@ -188,12 +189,22 @@ export default {
   top: 1rem;
   -webkit-appearance: none;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 1px solid #305581;
   height: 2rem;
   width: 2rem;
 }
+
 #app #tone {
-  padding-top: 400px;
+  padding-top: 250px;
+  padding-bottom: 250px; 
+  padding-left: 63px;
+  padding-right: 63px;
   text-align: left;
 }
+
+#app #tone p {
+  width: 35%;
+  padding-top: 40px;  
+}
+
 </style>

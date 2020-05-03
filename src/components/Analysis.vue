@@ -1,9 +1,9 @@
 <template>
   <div id="analysis">
-    <h3>
+    <h2>
       {{title}}
       <button class="more-info" v-on:click="onMoreInfoClick">i</button>
-    </h3>
+    </h2>
     <div class="flex-container">
       <div>
         <p>{{description}}</p>
@@ -78,28 +78,29 @@ export default {
 
 <style>
 #analysis {
-  height: 100vh;
   background-color: white;
   /* background: url('../assets/screenshot.png'); */
-  color: black;
+  color: #305581;
   text-align: left;
   padding-left: 63px;
-  padding-top: 60px;
+  padding-top: 200px;
+  padding-bottom: 200px; 
   position: relative;
 }
 #analysis .more-info {
   font-size: 1.25rem;
   font-weight: bold;
   -webkit-appearance: none;
+  color: #305581;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 1px solid #305581;
   height: 1.75rem;
   width: 1.75rem;
   vertical-align: middle;
 }
 
-#analysis h3 {
-  margin-bottom: 4rem;
+#analysis h2 {
+  margin-bottom: 2rem;
 }
 #analysis .flex-container {
   display: flex;
@@ -115,7 +116,12 @@ export default {
 #analysis #tags span {
   padding: 0.2rem 0.5rem;
   border-radius: 1rem;
-  border: black solid 1px;
+  border: #305581 solid 1px;
   margin: 0.25rem;
 }
+
+#analysis .linechart-svg-container {
+  margin-top: 80px; 
+}
+
 </style>
