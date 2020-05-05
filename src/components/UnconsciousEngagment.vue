@@ -7,7 +7,7 @@
     <h2>
       How does the economy <em>resonate unconsciously?</em>
     </h2>
-    <p><strong>On aggregate for the metric neural engagement, the issue of the economy is 8% greater than benchmark.</strong> Neural engagement is a composite measure of beta, gamma and theta waves collected from the EEG. These waves are associated with audience attention, emotional resonance and encoding to memory. Thus neural engagement presents a high level read on the engagement/persuasiveness of specific stimuli.</p>
+    <p><strong>On aggregate for neural engagement (the key metric), the issue of the economy is 8% greater than benchmark.</strong> Neural engagement is a composite measure of beta, gamma and theta waves collected from the EEG. These waves are associated with audience attention, emotional resonance and encoding to memory. Thus, neural engagement presents a high level read on the engagement/persuasiveness of specific stimuli.</p>
     <p>The following graph highlights one-second segments in the advertisements, that relate to the economy.  Each of these scenes are strong performing, as they have a neural engagement score of 10% or higher. Many of these moments highlight effective use of superimposed text or graphics that are often linked directly to the subject matter.</p>
    <img src="../assets/economyMoments.png" />
   </div>

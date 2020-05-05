@@ -9,12 +9,12 @@
       :content="trumpAnalysis"
       id="trump"
       title="Trump's emphasis on the economy"
-      description="This highly inspirational advertisement focuses on Trump’s achievements through the lens of the economy. The opening scenes (first 5 seconds) are the strongest moments with an aggregated +30% neural engagement score. Play the video or click on the chart to see the data transform."
+      description="This highly inspirational advertisement focuses on Trump’s achievements through the lens of the economy. The opening scenes (first 5 seconds) are the strongest moments with an aggregate +30% neural engagement score. Play the video or click on the chart to see the data transform."
       :onMoreInfoClick="toggleShowHowToRead"
     />
     <div id="tone">
       <h3>
-        Tone of voice is a another tool use to shape public opinion in political content. In the previous advertisement, Trump utilizes an inspirational tone, which our analysis found is an effective strategy. However, data indicated that a 
+        Tone of voice is another tool used to shape public opinion in political content. In the previous advertisement, Trump utilizes an inspirational tone, which our analysis found is an effective strategy. However, data indicated that a 
        <strong>fearful tone</strong> was even more <em><strong>engaging</strong></em>.
       </h3>
       <p>From an evolutionary psychology perspective, the emotion of fear can be adaptive because it focuses our attention to potential threats and, as a result, increases an organism’s odds of survival. </p>
@@ -23,7 +23,7 @@
       :content="bloombergAnalysis"
       id="bloomberg"
       title="Bloomberg utilized fear in advertising"
-      description="Bloomberg utilizes a fearful tone by highlighting Trump’s erratic and irrational behaviour. This highlights his inadequacies as President, inciting strong engagement. The creative tactics of strong audio/visual linkage underpins the success of the advertisement."
+      description="Bloomberg utilizes a fearful tone by highlighting Trump’s erratic and irrational behavior. This highlights his inadequacies as President, inciting strong engagement. The creative tactic of audio/visual linkage underpins the success of the advertisement."
       :onMoreInfoClick="toggleShowHowToRead"
     />
     <Explore :onClick="exploreAd" :ads="advertisements" />
