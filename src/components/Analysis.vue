@@ -10,9 +10,9 @@
         <video
           :id="id"
           controls
-          :src="`/videos/${videoName}.mp4`"
+          :src="`${path}videos/${videoName}.mp4`"
           type="video/mp4"
-          :poster="`thumbnails/${videoName}.png`"
+          :poster="`${path}thumbnails/${videoName}.png`"
         />
         <Tags :tags="tags" />
       </div>
@@ -41,6 +41,7 @@ export default {
     Tags,
   },
   computed: {
+    path: () => window.location.pathname,
     name: function() {
       return _.get(_.head(this.content), 'name')
     },
@@ -84,7 +85,7 @@ export default {
   text-align: left;
   padding-left: 63px;
   padding-top: 200px;
-  padding-bottom: 200px; 
+  padding-bottom: 200px;
   position: relative;
 }
 #analysis .more-info {
@@ -121,7 +122,6 @@ export default {
 }
 
 #analysis .linechart-svg-container {
-  margin-top: 80px; 
+  margin-top: 80px;
 }
-
 </style>

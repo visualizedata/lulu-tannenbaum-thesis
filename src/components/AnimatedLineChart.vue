@@ -154,7 +154,6 @@ export default {
 }
 </script>
 <style>
-
 .linechart-svg-container h5 {
   margin-top: 50px;
 }
@@ -214,5 +213,4 @@ path.benchmark-line {
 .linechart-svg-container span.legend:nth-of-type(2):before {
   border-bottom: 2px solid #a44b6d;
 }
-
 </style>

@@ -7,9 +7,9 @@
         <video
           :id="id"
           controls
-          :src="`/videos/${videoName}.mp4`"
+          :src="`${path}videos/${videoName}.mp4`"
           type="video/mp4"
-          :poster="`thumbnails/${videoName}.png`"
+          :poster="`${path}thumbnails/${videoName}.png`"
         />
         <Tags v-bind:tags="tags" />
       </div>
@@ -45,6 +45,7 @@ export default {
   },
   props: ['content', 'onClose'],
   computed: {
+    path: () => window.location.pathname,
     id: function() {
       return _.get(_.head(this.content), 'contentId')
     },

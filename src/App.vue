@@ -17,7 +17,7 @@
         Tone of voice is another tool used to shape public opinion in political content. In the previous advertisement, Trump utilizes an inspirational tone, which our analysis found is an effective strategy. However, data indicated that a 
        <strong>fearful tone</strong> was even more <em><strong>engaging</strong></em>.
       </h3>
-      <p>From an evolutionary psychology perspective, the emotion of fear can be adaptive because it focuses our attention to potential threats and, as a result, increases an organism’s odds of survival. </p>
+      <p>From an evolutionary psychology perspective, the emotion of fear can be adaptive because it focuses our attention to potential threats and, as a result, increases an organism’s odds of survival.</p>
     </div>
     <Analysis
       :content="bloombergAnalysis"
@@ -99,7 +99,7 @@ export default {
   methods: {
     getIssues() {
       this.loading = true
-      csv('/data/surveyData.csv', datum => ({
+      csv(`${window.location.pathname}data/surveyData.csv`, datum => ({
         issue: datum.Issue,
         percentage: +_.replace(datum.Percentage, '%', '') / 100,
       })).then(data => {
@@ -109,9 +109,11 @@ export default {
     },
     async getAdvertisementData() {
       this.loading = true
-      const tags = await csv('data/tagsData.csv')
-      const toplineData = await csv('data/toplineData.csv')
-      csv('/data/braindata.csv', datum => {
+      const tags = await csv(`${window.location.pathname}data/tagsData.csv`)
+      const toplineData = await csv(
+        `${window.location.pathname}data/toplineData.csv`
+      )
+      csv(`${window.location.pathname}data/braindata.csv`, datum => {
         const date = timeParse('%M:%S')(datum.offset)
         const toplineDatum = _.find(
           toplineData,
@@ -152,7 +154,6 @@ export default {
       this.popupContent = ad
     },
     exploreAd(contentId) {
-      console.log('contentID', contentId)
       this.toggleShowPopup()
       this.updatePopupContent(contentId)
     },
@@ -175,7 +176,7 @@ export default {
 }
 #app h2 {
   font-size: 40px;
-  font-weight:700; 
+  font-weight: 700;
 }
 #app h3 {
   font-size: 40px;
@@ -196,7 +197,7 @@ export default {
 
 #app #tone {
   padding-top: 250px;
-  padding-bottom: 250px; 
+  padding-bottom: 250px;
   padding-left: 63px;
   padding-right: 63px;
   text-align: left;
@@ -204,7 +205,6 @@ export default {
 
 #app #tone p {
   width: 35%;
-  padding-top: 40px;  
+  padding-top: 40px;
 }
-
 </style>
