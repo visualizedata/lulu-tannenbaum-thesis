@@ -68,10 +68,10 @@ export default {
 
       const yScale = scaleLinear()
         .range([chartHeight, 0])
-        .domain([-60, 60])
+        .domain([-60, 90])
       // .domain([
-      //   _.minBy(brainData, 'NES')['NES'],
-      //   _.maxBy(brainData, 'NES')['NES'],
+      //   _.minBy(this.content, 'NES')['NES'],
+      //   _.maxBy(this.content, 'NES')['NES'],
       // ])
 
       chart.append('g').call(axisLeft(yScale).ticks(0))
