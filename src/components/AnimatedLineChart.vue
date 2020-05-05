@@ -68,10 +68,10 @@ export default {
 
       const yScale = scaleLinear()
         .range([chartHeight, 0])
-        .domain([-60, 90])
+        .domain([-60, 60])
       // .domain([
-      //   _.minBy(this.content, 'NES')['NES'],
-      //   _.maxBy(this.content, 'NES')['NES'],
+      //   _.minBy(brainData, 'NES')['NES'],
+      //   _.maxBy(brainData, 'NES')['NES'],
       // ])
 
       chart.append('g').call(axisLeft(yScale).ticks(0))
@@ -154,7 +154,6 @@ export default {
 }
 </script>
 <style>
-
 .linechart-svg-container h5 {
   margin-top: 50px;
 }
@@ -214,5 +213,4 @@ path.benchmark-line {
 .linechart-svg-container span.legend:nth-of-type(2):before {
   border-bottom: 2px solid #a44b6d;
 }
-
 </style>
