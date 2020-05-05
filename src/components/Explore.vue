@@ -1,8 +1,8 @@
 <template>
   <div id="explore">
     <div id="conclusion">
-      <h2>People unconsciously respond to creative techniques in advertising.</h2>
-      <p>This neuro data gives us a window into these unconscious processes. Our analysis revealed that fear was the most powerful tone utilized in American political media. Messaging pertaining to social-political issues of the economy, healthcare, education and climate change resonate as they align in both datasets (conscious vs, unconscious). Based on these findings, political marketing has demonstrable influence on the American voter.</p>
+    <h2>People unconsciously respond to creative techniques in advertising.</h2>
+    <p>This neuro data gives us a window into these unconscious processes. Our analysis revealed that fear was the most powerful tone utilized in American political media. Secondly, messaging pertaining to social-political issues of the economy, healthcare, education and climate change resonate as they align in both datasets (conscious vs. unconscious). Based on these findings, political marketing has a demonstrable influence on the American voter.</p>
     </div>
     <h2>Explore the Data</h2>
     <p>Click on each piece of content to view the neural engagement trace of the spot.</p>

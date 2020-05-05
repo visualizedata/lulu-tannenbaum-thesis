@@ -19,6 +19,6 @@ git commit -m 'deploy'
 
 # git push -f git@github.com:lulujordanna/your-brain-on-politics.git master:gh-pages
 
-git push -f git@github.com:lulujordanna/thesis.git master:gh-pages
+git push -f https://github.com/lulujordanna/thesis.git master:gh-pages
 
 cd -
