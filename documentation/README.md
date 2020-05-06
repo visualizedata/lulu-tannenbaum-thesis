@@ -6,6 +6,8 @@ Voting choices are made on more than just facts – emotion, bias and unconsciou
 Read full abstract [here.](https://github.com/lulujordanna/thesis/blob/master/documentation/abstract.md) | View the project [here.](https://lulujordanna.github.io/thesis/) | Watch the video [here.](https://github.com/lulujordanna/thesis/blob/master/demo.mp4)
 
 ![Thesis Preview](https://github.com/lulujordanna/thesis/blob/master/preview.png)
+![Thesis Preview](https://github.com/lulujordanna/thesis/blob/master/documentation/2.png)
+![Thesis Preview](https://github.com/lulujordanna/thesis/blob/master/documentation/3.png)
 
 Data and video files are replicated copies for educational purposed. Copyrights belongs to the respective owners.
 
