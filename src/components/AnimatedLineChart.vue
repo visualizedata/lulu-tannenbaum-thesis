@@ -68,7 +68,7 @@ export default {
 
       const yScale = scaleLinear()
         .range([chartHeight, 0])
-        .domain([-60, 90])
+        .domain([-100, 100])
       // .domain([
       //   _.minBy(this.content, 'NES')['NES'],
       //   _.maxBy(this.content, 'NES')['NES'],
@@ -99,7 +99,7 @@ export default {
         .attr('class', 'axis')
         .call(
           axisLeft(yScale)
-            .tickValues([-60, -30, 0, 30, 60, 90])
+            .tickValues([-100, -75, -50, -25, 0, 25, 50, 75, 100])
             .tickFormat(d => `${d}%`)
         )
 
