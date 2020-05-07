@@ -6,30 +6,8 @@ Voting choices are made on more than just facts – emotion, bias and unconsciou
 
 ![Thesis Preview](https://github.com/lulujordanna/thesis/blob/master/preview.png)
 
-## Project setup
+Data and video files are replicated copies for educational purposed. Copyrights belongs to the respective owners. 
 
-```
-npm install
-```
+© Brainsights for data files. 
 
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/)
+© Alexandria Ocasio-Cortez 2018, Andrew Yang, Audi, Bernie 2020, Bloomberg Media, CNN, Fox News, Joe Biden for President, Mike Bloomberg for President, NFL Media, Olay, Soda Stream, Trump for President Inc, Warren for President for video files.  
